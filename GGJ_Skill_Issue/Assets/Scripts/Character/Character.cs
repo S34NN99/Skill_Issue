@@ -9,8 +9,10 @@ public class Character : Damageable
     public MovementController movementController;
     public new Collider2D collider2D;
     public new Rigidbody2D rigidbody2D;
+    public List<string> hostileTags;
 
-    private void Start()
+
+    private void Awake()
     {
         movementController = GetComponentInChildren<MovementController>();
 

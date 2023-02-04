@@ -33,10 +33,9 @@ public class MovementController : MonoBehaviour
 
     bool IsTouchingBottomGround()
     {
-        ContactFilter2D hhhh = new ContactFilter2D();
         List<Collider2D> tuna = new List<Collider2D>();
 
-        if (parent.GetComponent<Character>().collider2D.OverlapCollider(hhhh, tuna) > 0)
+        if (parent.GetComponent<Character>().collider2D.OverlapCollider(new ContactFilter2D(), tuna) > 0)
         {
             return true;
         }

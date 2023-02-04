@@ -5,11 +5,20 @@ using UnityEngine;
 public class Skill : MonoBehaviour
 {
     public Player player;
-    int attackDamage, attackRange, mpCost;
-    float cooldownInSecs, cooldownCache;
-    bool isOnCooldown, drainCooldown;
+    public int mpCost, attackDamage;
+    public float cooldownInSecs, attackRange, attackDuration, cooldownCache, durationCache;
+    protected bool isOnCooldown = false, drainCooldown = false;
+    public KeyCode castKey;
 
-    public virtual void OnSkillCast() { }
+    private void Start()
+    {
+    }
+
+    public virtual void OnSkillCast() 
+    {
+        SetOnCooldown(true);
+    }
+
     void SetOnCooldown(bool state)
     {
         drainCooldown = state;
@@ -42,7 +51,16 @@ public class Skill : MonoBehaviour
 
     private void Update()
     {
+        UpdateFunc();
+    }
+
+    protected void UpdateFunc()
+    {
         DrainCooldown();
+        if (Input.GetKeyDown(castKey) && !isOnCooldown)
+        {
+            OnSkillCast();
+        }
     }
 
 }

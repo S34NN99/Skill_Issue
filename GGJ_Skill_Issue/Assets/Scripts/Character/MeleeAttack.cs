@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MeleeAttack : Attack
 {
+    public Damageable hostile;
 
     public void Update()
     {
@@ -12,7 +13,7 @@ public class MeleeAttack : Attack
             currentWaitTime -= Time.deltaTime;
         }
 
-        if(Input.GetKey(KeyCode.Q) && currentWaitTime <= 0)
+        if(Input.GetKeyDown(KeyCode.Q) && currentWaitTime <= 0)
         {
             UseAttack();
         }
@@ -20,15 +21,18 @@ public class MeleeAttack : Attack
 
     public override void UseAttack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, BaseAttackRange, enemyLayers);
-
-        foreach (var enemy in hitEnemies)
+        Collider2D[] collided = Physics2D.OverlapCircleAll(attackPoint.position, BaseAttackRange, enemyLayers);
+        List<Collider2D> listOfHostiles = new List<Collider2D>(collided);
+        hostile = listOfHostiles.Find(x => x.CompareTag("Enemy"))?.gameObject.GetComponent<Damageable>();
+        if (hostile == null)
         {
-            Debug.Log(enemy.name + " is hit");
+            return;
         }
+        hostile.Damage(BaseAttackDamager);
 
         currentWaitTime = WaitForNextAttack;
     }
+
 
     private void OnDrawGizmosSelected()
     {
