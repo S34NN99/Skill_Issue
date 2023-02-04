@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Skill_RootBullet : Skill
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject bulletPrefab, oriPrefab;
+    public RangedAttack rangedAttack;
 
-    // Update is called once per frame
-    void Update()
+    public override void OnSkillCast()
     {
-        
+        if (player.SpendMP(mpCost))
+        {
+            base.OnSkillCast();
+
+            oriPrefab = rangedAttack.projectilePrefab;
+            rangedAttack.SetProjectilePrefab(bulletPrefab);
+            rangedAttack.UseAttack();
+            rangedAttack.SetProjectilePrefab(oriPrefab);
+
+        }
     }
 }

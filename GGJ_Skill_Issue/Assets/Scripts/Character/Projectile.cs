@@ -30,6 +30,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] bool toDestroy;
     public bool ToDestroy => toDestroy;
 
+    Damageable hostile;
+
 
     private void Update()
     {
@@ -67,9 +69,13 @@ public class Projectile : MonoBehaviour
 
     public void CheckTagsAndDamage(string input)
     {
-        Damageable hostile = CheckCollided()?.Find(x => x.CompareTag(input))?.gameObject.GetComponent<Damageable>();
-        hostile?.DamageEvents.AddListener(ProcessToDestroy);
-        hostile?.Damage(damagePoints);
+        hostile = CheckCollided()?.Find(x => x.CompareTag(input))?.gameObject.GetComponent<Damageable>();
+        if (hostile == null)
+        {
+            return;
+        }
+        hostile.DamageEvents += ProcessToDestroy;
+        hostile.Damage(damagePoints);
     }
 
     void ProcessToDestroy()
@@ -82,6 +88,14 @@ public class Projectile : MonoBehaviour
         if (toDestroy)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (hostile)
+        {
+            hostile.DamageEvents -= ProcessToDestroy;
         }
     }
 }

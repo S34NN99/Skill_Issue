@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RangedAttack : Attack
 {
-    Character attacker;
+    public Character attacker;
     public GameObject projectilePrefab;
     List<Projectile> activeProjectileList = new List<Projectile>();
     public int activeProjectileLimit;
 
     void Start()
     {
-        attacker = gameObject.GetComponentInParent<Character>();
+        //attacker = gameObject.GetComponentInParent<Character>();
     }
     public void Update()
     {
@@ -19,16 +19,10 @@ public class RangedAttack : Attack
         {
             currentWaitTime -= Time.deltaTime;
         }
-
-        if (Input.GetKey(KeyCode.J) && currentWaitTime <= 0)
-        {
-            UseAttack();
-        }
-
         ProcessProjectilesCourse();
     }
 
-    public void SetBulletPrefab(GameObject inPrefab)
+    public void SetProjectilePrefab(GameObject inPrefab)
     {
         projectilePrefab = inPrefab;
     }
@@ -36,10 +30,11 @@ public class RangedAttack : Attack
     public override void UseAttack()
     {
         Vector3 shotDirection = (attackPoint.position - attacker.transform.position).normalized;
-
         if (activeProjectileList.Count < activeProjectileLimit)
         {
-            Projectile tempProjectile = Instantiate(projectilePrefab, transform).GetComponent<Projectile>();
+            Projectile tempProjectile = Instantiate(projectilePrefab).GetComponent<Projectile>();
+
+            tempProjectile.gameObject.transform.position = attackPoint.position;
 
             tempProjectile.SetDirection(new Vector3(shotDirection.x, shotDirection.y, shotDirection.z));
 
@@ -55,7 +50,7 @@ public class RangedAttack : Attack
         foreach (Projectile proj in activeProjectileList)
         {
             proj.ProcessCourse();
-            hostileTags.ForEach(proj.CheckTagsAndDamage);
+            attacker.hostileTags.ForEach(proj.CheckTagsAndDamage);
             
             if (proj.ToDestroy)
             {

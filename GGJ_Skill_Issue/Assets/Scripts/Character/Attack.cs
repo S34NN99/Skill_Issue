@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Attack : MonoBehaviour
 {
-    public List<string> hostileTags;
 
     [SerializeField] private int baseAttackDamage;
     public int BaseAttackDamager => baseAttackDamage;

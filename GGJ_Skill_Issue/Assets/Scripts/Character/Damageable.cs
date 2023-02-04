@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
-    public UnityEvent DamageEvents;
-    public UnityEvent DeathEvents;
+    public UnityAction DamageEvents;
+    public UnityAction DeathEvents;
 
     [SerializeField] int hp;
     public int HP => hp;
@@ -40,11 +41,11 @@ public class Damageable : MonoBehaviour
 
     void OnDeath()
     {
-        Debug.Log("Dieman");
+        DeathEvents += DeathToThis;
         DeathEvents?.Invoke();
     }
 
-    void DebugBugMan()
+    public void DeathToThis()
     {
         Destroy(gameObject);
     }
