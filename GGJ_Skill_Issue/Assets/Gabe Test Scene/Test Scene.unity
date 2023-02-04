@@ -265,86 +265,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &892928819
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 892928820}
-  - component: {fileID: 892928821}
-  - component: {fileID: 892928822}
-  m_Layer: 0
-  m_Name: AttackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &892928820
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892928819}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.97, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8372673012254913191}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &892928821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892928819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7a540298f101b047a0c9c37c948180d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseAttackDamage: 1
-  baseAttackRange: 1
-  waitForNextAttack: 1
-  attackPoint: {fileID: 892928820}
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  hostile: {fileID: 0}
---- !u!114 &892928822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892928819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8345f1ec6ed8954389fd02252c9ae18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseAttackDamage: 0
-  baseAttackRange: 0
-  waitForNextAttack: 0.1
-  attackPoint: {fileID: 892928820}
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  attacker: {fileID: 8372673012254913192}
-  projectilePrefab: {fileID: 1436417354710092688, guid: 4cead61369e6eb347bf673797e9b75d7, type: 3}
-  activeProjectileLimit: 10
---- !u!1 &1215744700 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8372673012584993806, guid: d943fd19e612c6b4c9e43ce2d2b711f0, type: 3}
-  m_PrefabInstance: {fileID: 8372673012254913190}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1551735804
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,7 +510,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5868902474897046b2018065cdbc1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
+  maxHP: 0
+  toBeDamaged: 0
+  willNotDie: 0
+  Testing: 0
   movementController: {fileID: 0}
   collider2D: {fileID: 0}
   rigidbody2D: {fileID: 0}
@@ -825,90 +748,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: SquarePlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 9055655137488615956, guid: d943fd19e612c6b4c9e43ce2d2b711f0, type: 3}
-      propertyPath: hp
-      value: 999
-      objectReference: {fileID: 0}
-    - target: {fileID: 9055655137488615956, guid: d943fd19e612c6b4c9e43ce2d2b711f0, type: 3}
-      propertyPath: mp
-      value: 999
-      objectReference: {fileID: 0}
-    - target: {fileID: 9055655137488615956, guid: d943fd19e612c6b4c9e43ce2d2b711f0, type: 3}
-      propertyPath: hostileTags.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9055655137488615956, guid: d943fd19e612c6b4c9e43ce2d2b711f0, type: 3}
-      propertyPath: hostileTags.Array.data[0]
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d943fd19e612c6b4c9e43ce2d2b711f0, type: 3}
---- !u!4 &8372673012254913191 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8372673012584993802, guid: d943fd19e612c6b4c9e43ce2d2b711f0, type: 3}
-  m_PrefabInstance: {fileID: 8372673012254913190}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8372673012254913192 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9055655137488615956, guid: d943fd19e612c6b4c9e43ce2d2b711f0, type: 3}
-  m_PrefabInstance: {fileID: 8372673012254913190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215744700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5868902474897046b2018065cdbc1a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8372673012254913196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215744700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dc847b7d1250b429a66eb9f297bddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 8372673012254913192}
-  mpCost: 0
-  attackDamage: 1
-  cooldownInSecs: 1.1
-  attackRange: 2
-  attackDuration: 1
-  cooldownCache: 0
-  durationCache: 0
-  castKey: 106
-  spikePrefab_head: {fileID: 901476019599852075, guid: e7b010dc4892e0c4ba7973ca80868940, type: 3}
-  spikePrefab_body: {fileID: 901476019599852075, guid: 83ddbedb76c6b39458041e073715411d, type: 3}
-  acceleration: 2
-  instanced_SpikeHead: {fileID: 0}
-  instanced_SpikeBody: {fileID: 0}
-  hostile: {fileID: 0}
-  attackPoint: {fileID: 892928820}
-  returnAnimTime: 0.5
---- !u!114 &8372673012254913197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215744700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6579c8c71b57ccd478828bb81fc8ab97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 8372673012254913192}
-  mpCost: 1
-  attackDamage: 0
-  cooldownInSecs: 0.1
-  attackRange: 0
-  attackDuration: 0
-  cooldownCache: 0
-  durationCache: 0
-  castKey: 107
-  bulletPrefab: {fileID: 1436417354710092688, guid: d1473ceb265f1b840972e5223cca1274, type: 3}
-  oriPrefab: {fileID: 0}
-  rangedAttack: {fileID: 892928822}
