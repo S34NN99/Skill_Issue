@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Character : MonoBehaviour
+public class Character : Damageable
 {
+    [Space(10)]
     public MovementController movementController;
     public new Collider2D collider2D;
     public new Rigidbody2D rigidbody2D;
