@@ -23,7 +23,7 @@ public class StateMachine
 
     public void UpdateStates()
     {
-        currentState.RunCurrentState(owner);
+        currentState.RunCurrentState(owner); 
     }
 
     public void ExitState() 

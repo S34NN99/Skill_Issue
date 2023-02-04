@@ -21,6 +21,7 @@ public class MeleeAttack : Attack
 
     public override void UseAttack()
     {
+        Debug.Log("Attacking");
         Collider2D[] collided = Physics2D.OverlapCircleAll(attackPoint.position, BaseAttackRange, enemyLayers);
         List<Collider2D> listOfHostiles = new List<Collider2D>(collided);
         hostile = listOfHostiles.Find(x => x.CompareTag("Enemy"))?.gameObject.GetComponent<Damageable>();
