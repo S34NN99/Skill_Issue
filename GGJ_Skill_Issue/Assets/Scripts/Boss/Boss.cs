@@ -5,11 +5,15 @@ using UnityEngine;
 public class Boss : Character, IEntity
 {
     public StateMachine SM { get; set; }
-
     public GameObject curentEntity { get; set; }
 
-    [SerializeField] private List<Transform> hands;
     [SerializeField] private State StateToStart;
+
+    private void Awake()
+    {
+        HP = MaxHP;
+        Debug.Log(HP + " " + MaxHP + " " + gameObject.name);
+    }
 
     private void Start()
     {

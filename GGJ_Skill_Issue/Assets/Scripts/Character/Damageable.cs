@@ -7,21 +7,44 @@ public class Damageable : MonoBehaviour
     public UnityAction DamageEvents;
     public UnityAction DeathEvents;
 
-    [SerializeField] int hp;
-    public int HP => hp;
-
-    [SerializeField] private bool willNotdie;
-    public bool WillNotDie => willNotdie;
-
-    private void Start()
+    [SerializeField] private int maxHP;
+    public int MaxHP => maxHP;
+    private int hp;
+    public int HP
     {
-        DeathEvents.AddListener( () => Destroy(this.gameObject));
+        get { return hp; }
+        set { hp = value; }
+    }
+
+    [SerializeField] private int toBeDamaged;
+    public int ToBeDamaged => toBeDamaged;
+
+    [SerializeField] private bool willNotDie;
+    public bool WillNotDie => willNotDie;
+
+    public bool Testing;
+
+    private void Awake()
+    {
+        hp = MaxHP;
+        Debug.Log(hp + " " + MaxHP + " " + gameObject.name);
+    }
+
+    private void Update()
+    {
+        if (Testing)
+        {
+            Damage(5);
+            Testing = false;
+        }
     }
 
     public void Damage(int damagePoints)
     {
-        hp -= damagePoints;
-        if (hp<=0 && !WillNotDie)
+        Debug.Log($"{damagePoints} hit to {this.gameObject.name} and {hp} and {willNotDie}");
+        HP -= damagePoints;
+        toBeDamaged = damagePoints;
+        if (HP <= 0 && !WillNotDie)
         {
             OnDeath();
         }
@@ -30,7 +53,7 @@ public class Damageable : MonoBehaviour
 
     public void Heal(int healPoints)
     {
-        hp += healPoints;
+        HP += healPoints;
     }
 
 

@@ -3,30 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[Serializable]
-public class Hand
-{
-    [HideInInspector] public Vector2 startPos;
-    public Transform _HandTransform;
-    public Animator _Animator;
-    [HideInInspector] public Vector2 TargetPos;
-
-    public Vector2 GetStartPos()
-    {
-        return _HandTransform.position;
-    }
-}
-
-public class BossAttack_Phase1 : Attack
+public class BossAttack_Phase2 : Attack
 {
     [SerializeField] private List<Hand> hands;
     [Range(0, 100)]
     [SerializeField] private float speed;
     [SerializeField] private int waitTime;
+    [SerializeField] private List<Transform> clapPos;
     public int WaitTime => waitTime;
 
     private GameObject player;
     private bool isAttacking;
+    private bool isClap;
 
     private int punchCounter = -1;
     private int PunchCounter
@@ -35,7 +23,7 @@ public class BossAttack_Phase1 : Attack
         set
         {
             punchCounter = value;
-            if(punchCounter > 2)
+            if (punchCounter > 3)
             {
                 punchCounter = 0;
             }
@@ -44,7 +32,7 @@ public class BossAttack_Phase1 : Attack
 
     private bool isAttackDone;
     private bool isRetractDone;
-    
+
     public Action ResetVaribles;
     public Action<bool, Animator> AnimSwitch;
 
@@ -57,6 +45,7 @@ public class BossAttack_Phase1 : Attack
             isAttackDone = false;
             isRetractDone = false;
             isAttacking = false;
+            isClap = false;
         };
 
         AnimSwitch += (boolean, animator) => animator.enabled = boolean;
@@ -69,7 +58,7 @@ public class BossAttack_Phase1 : Attack
             isAttacking = true;
             isAttackDone = false;
             isRetractDone = false;
-            PunchCounter++;
+            PunchCounter = UnityEngine.Random.Range(0, 4);
 
             currentWaitTime = WaitForNextAttack;
 
@@ -79,7 +68,7 @@ public class BossAttack_Phase1 : Attack
                 hands[PunchCounter].TargetPos = GetCurrentPlayerPos();
                 AnimSwitch?.Invoke(false, hands[PunchCounter]._Animator);
             }
-            else
+            else if(PunchCounter == 2)
             {
                 hands[0].startPos = hands[0].GetStartPos();
                 hands[1].startPos = hands[1].GetStartPos();
@@ -91,7 +80,14 @@ public class BossAttack_Phase1 : Attack
 
                 AnimSwitch?.Invoke(false, hands[0]._Animator);
                 AnimSwitch?.Invoke(false, hands[1]._Animator);
+            }
+            else if(PunchCounter > 2)
+            {
+                hands[0].startPos = hands[0].GetStartPos();
+                hands[1].startPos = hands[1].GetStartPos();
 
+                AnimSwitch?.Invoke(false, hands[0]._Animator);
+                AnimSwitch?.Invoke(false, hands[1]._Animator);
             }
 
         }
@@ -107,7 +103,7 @@ public class BossAttack_Phase1 : Attack
 
     private void FixedUpdate()
     {
-        if(isAttacking)
+        if (isAttacking)
         {
             var step = speed * Time.deltaTime;
 
@@ -117,10 +113,63 @@ public class BossAttack_Phase1 : Attack
                     SpecialAttack(step);
                     break;
 
+                case 3:
+                    ClapAttack(step);
+                    break;
+
                 default:
                     NormalAttack(step);
                     break;
             }
+        }
+    }
+
+    private void ClapAttack(float step)
+    {
+        Hand handToPunchLeft = hands[0];
+        Hand handToPunchRight = hands[1];
+
+        if (!isAttackDone)
+        {
+            StartCoroutine(PunchPlayer(new List<Hand>() { handToPunchLeft, handToPunchRight }, () =>
+            {
+                handToPunchLeft.TargetPos = clapPos[0].position;
+                handToPunchRight.TargetPos = clapPos[1].position;
+
+                handToPunchLeft._HandTransform.position = Vector2.MoveTowards(handToPunchLeft._HandTransform.position, handToPunchLeft.TargetPos, step);
+                handToPunchRight._HandTransform.position = Vector2.MoveTowards(handToPunchRight._HandTransform.position, handToPunchRight.TargetPos, step);
+            }));
+        }
+
+        if(isAttackDone && !isClap)
+        {
+            StartCoroutine(ClapPlayer(new List<Hand>() { handToPunchLeft, handToPunchRight }, () =>
+            {
+
+                handToPunchLeft.TargetPos = new Vector2(-1, clapPos[0].position.y);
+                handToPunchRight.TargetPos = new Vector2(1, clapPos[1].position.y);
+
+
+                handToPunchLeft._HandTransform.position = Vector2.MoveTowards(handToPunchLeft._HandTransform.position, handToPunchLeft.TargetPos, step);
+                handToPunchRight._HandTransform.position = Vector2.MoveTowards(handToPunchRight._HandTransform.position, handToPunchRight.TargetPos, step);
+            }));
+        }
+
+        if (isAttackDone && isClap && !isRetractDone)
+        {
+            StartCoroutine(RetractPunch(new List<Hand>() { handToPunchLeft, handToPunchRight }, () =>
+            {
+                handToPunchLeft._HandTransform.position = ReturnToDefaultPosition(handToPunchLeft._HandTransform.position, handToPunchLeft.startPos, step);
+                handToPunchRight._HandTransform.position = ReturnToDefaultPosition(handToPunchRight._HandTransform.position, handToPunchRight.startPos, step);
+            }));
+        }
+
+        if (isAttackDone && isRetractDone)
+        {
+            ResetVaribles?.Invoke();
+            AnimSwitch?.Invoke(true, handToPunchLeft._Animator);
+            AnimSwitch?.Invoke(true, handToPunchRight._Animator);
+
         }
     }
 
@@ -132,10 +181,10 @@ public class BossAttack_Phase1 : Attack
         if (!isAttackDone)
         {
             StartCoroutine(PunchPlayer(new List<Hand>() { handToPunchLeft, handToPunchRight }, () =>
-             {
-                 handToPunchLeft._HandTransform.position = Vector2.MoveTowards(handToPunchLeft._HandTransform.position, handToPunchLeft.TargetPos, step);
-                 handToPunchRight._HandTransform.position = Vector2.MoveTowards(handToPunchRight._HandTransform.position, handToPunchRight.TargetPos, step);
-             }));
+            {
+                handToPunchLeft._HandTransform.position = Vector2.MoveTowards(handToPunchLeft._HandTransform.position, handToPunchLeft.TargetPos, step);
+                handToPunchRight._HandTransform.position = Vector2.MoveTowards(handToPunchRight._HandTransform.position, handToPunchRight.TargetPos, step);
+            }));
         }
 
         if (isAttackDone && !isRetractDone)
@@ -190,7 +239,7 @@ public class BossAttack_Phase1 : Attack
         bool check = false;
         while (!check)
         {
-            foreach(Hand hand in handToPunch)
+            foreach (Hand hand in handToPunch)
             {
                 if (!TargetReached(hand._HandTransform.position, hand.TargetPos))
                 {
@@ -207,6 +256,31 @@ public class BossAttack_Phase1 : Attack
         yield return new WaitForSeconds(WaitTime);
 
         isAttackDone = true;
+    }
+
+    private IEnumerator ClapPlayer(List<Hand> handToPunch, Action punchAction)
+    {
+        punchAction?.Invoke();
+        bool check = false;
+        while (!check)
+        {
+            foreach (Hand hand in handToPunch)
+            {
+                if (!TargetReached(hand._HandTransform.position, hand.TargetPos))
+                {
+                    check = false;
+                    break;
+                }
+                else
+                    check = true;
+            }
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(WaitTime);
+
+        isClap = true;
     }
 
     private IEnumerator RetractPunch(List<Hand> handToPunch, Action retractAction)

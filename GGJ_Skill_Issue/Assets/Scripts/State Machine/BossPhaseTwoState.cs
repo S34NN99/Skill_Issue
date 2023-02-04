@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.Events;
 
-public class IdleState : State
+public class BossPhaseTwoState : State
 {
-    public State StateToChangeTo;
-
+    [SerializeField] private State StateToChangeTo;
+    [SerializeField] private Damageable bossHP;
     private Dictionary<string, bool> ConditionDict = new Dictionary<string, bool>();
 
 
@@ -16,16 +16,16 @@ public class IdleState : State
         ConditionDict.Add(s, false);
         conditions.AddCondition(s, () =>
         {
-            Debug.Log("Testing");
-            ConditionDict[s] = true;
+            ConditionDict[s] = false;
         });
     }
 
+
     public override void OnStart(IEntity entity)
     {
-        PutInConditions("s");
+        PutInConditions("Testing");
         OnStartActions?.Invoke();
-        Debug.Log(entity.SM.currentState.name + " entered");
+        Debug.Log("Phase 2");
     }
 
     public override void RunCurrentState(IEntity entity)
@@ -47,10 +47,10 @@ public class IdleState : State
         }
     }
 
-
     public override void OnExit(IEntity entity)
     {
-        OnEndActions?.Invoke();
-        Debug.Log(entity.SM.currentState.name + " exit");
+        Debug.Log("Exit phase 2");
+
     }
+
 }
