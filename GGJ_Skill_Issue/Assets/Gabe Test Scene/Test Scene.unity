@@ -875,17 +875,16 @@ MonoBehaviour:
   mpCost: 0
   attackDamage: 1
   cooldownInSecs: 1.1
-  attackRange: 0.05
+  attackRange: 2
   attackDuration: 1
   cooldownCache: 0
   durationCache: 0
   castKey: 106
   spikePrefab_head: {fileID: 901476019599852075, guid: e7b010dc4892e0c4ba7973ca80868940, type: 3}
   spikePrefab_body: {fileID: 901476019599852075, guid: 83ddbedb76c6b39458041e073715411d, type: 3}
-  bodySpawnDistance: 2
+  acceleration: 2
   instanced_SpikeHead: {fileID: 0}
-  instanced_SpikeBodyCurr: {fileID: 0}
-  instanced_SpikeBody: []
+  instanced_SpikeBody: {fileID: 0}
   hostile: {fileID: 0}
   attackPoint: {fileID: 892928820}
   returnAnimTime: 0.5
