@@ -8,6 +8,7 @@ public class MovementController : MonoBehaviour
     public float speed = 8.0f;
     public float timeScaleMultiplier = 1.0f;
     public bool isPossessed = false;
+    bool isRightFacing = true, isLeftFacing = false;
 
     private bool isJumpNow;
 
@@ -19,10 +20,22 @@ public class MovementController : MonoBehaviour
 
     void MoveLeft(float scale = 1)
     {
+        if (isRightFacing)
+        {
+            isLeftFacing = true;
+            isRightFacing = false;
+            parent.transform.Rotate(new Vector3(0, 1, 0), 180);
+        }
         MoveToVector(Vector2.left, scale);
     }
     void MoveRight(float scale = 1)
     {
+        if (isLeftFacing)
+        {
+            isLeftFacing = false;
+            isRightFacing = true;
+            parent.transform.Rotate(new Vector3(0, 1, 0), 180);
+        }
         MoveToVector(Vector2.right, scale);
     }
 
