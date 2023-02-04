@@ -39,7 +39,9 @@ public class RangedAttack : Attack
 
         if (activeProjectileList.Count < activeProjectileLimit)
         {
-            Projectile tempProjectile = Instantiate(projectilePrefab, transform).GetComponent<Projectile>();
+            Projectile tempProjectile = Instantiate(projectilePrefab).GetComponent<Projectile>();
+
+            tempProjectile.gameObject.transform.position = attackPoint.position;
 
             tempProjectile.SetDirection(new Vector3(shotDirection.x, shotDirection.y, shotDirection.z));
 
