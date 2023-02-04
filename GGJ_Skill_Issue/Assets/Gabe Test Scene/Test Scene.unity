@@ -275,6 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 892928820}
   - component: {fileID: 892928821}
+  - component: {fileID: 892928822}
   m_Layer: 0
   m_Name: AttackPoint
   m_TagString: Untagged
@@ -309,6 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a540298f101b047a0c9c37c948180d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hostileTags:
+  - Enemy
   baseAttackDamage: 0
   baseAttackRange: 1
   waitForNextAttack: 1
@@ -316,6 +319,29 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &892928822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892928819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8345f1ec6ed8954389fd02252c9ae18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hostileTags:
+  - Enemy
+  baseAttackDamage: 0
+  baseAttackRange: 0
+  waitForNextAttack: 0.2
+  attackPoint: {fileID: 892928820}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  projectilePrefab: {fileID: 1436417354710092688, guid: 4cead61369e6eb347bf673797e9b75d7, type: 3}
+  activeProjectileLimit: 1
 --- !u!1 &1551735804
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +593,7 @@ MonoBehaviour:
   DeathEvents:
     m_PersistentCalls:
       m_Calls: []
+  hp: 2
   movementController: {fileID: 0}
   collider2D: {fileID: 0}
   rigidbody2D: {fileID: 0}
@@ -724,7 +751,7 @@ GameObject:
   - component: {fileID: 3727578872326743449}
   m_Layer: 6
   m_Name: SquarePlayer (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

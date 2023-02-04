@@ -6,8 +6,15 @@ public class Damageable : MonoBehaviour
     public UnityEvent DamageEvents;
     public UnityEvent DeathEvents;
 
-    int hp;
+    [SerializeField] int hp;
     public int HP => hp;
+
+    private void Start()
+    {
+        DeathEvents.AddListener( () => Destroy(this.gameObject));
+        DeathEvents.AddListener(() => Debug.Log("hello"));
+
+    }
 
     public void Damage(int damagePoints)
     {
@@ -32,7 +39,12 @@ public class Damageable : MonoBehaviour
 
     void OnDeath()
     {
+        Debug.Log("Dieman");
         DeathEvents?.Invoke();
     }
 
+    void DebugBugMan()
+    {
+        Destroy(gameObject);
+    }
 }
