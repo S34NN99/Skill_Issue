@@ -15,7 +15,7 @@ public abstract class Attack : MonoBehaviour
     [SerializeField] private float waitForNextAttack;
     public float WaitForNextAttack => waitForNextAttack;
 
-    protected float currentWaitTime;
+    [SerializeField] protected float currentWaitTime;
     [SerializeField] protected Transform attackPoint;
     [SerializeField] protected LayerMask enemyLayers;
 

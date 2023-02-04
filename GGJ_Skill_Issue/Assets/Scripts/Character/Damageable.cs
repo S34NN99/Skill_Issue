@@ -9,17 +9,18 @@ public class Damageable : MonoBehaviour
     [SerializeField] int hp;
     public int HP => hp;
 
+    [SerializeField] private bool willNotdie;
+    public bool WillNotDie => willNotdie;
+
     private void Start()
     {
         DeathEvents.AddListener( () => Destroy(this.gameObject));
-        DeathEvents.AddListener(() => Debug.Log("hello"));
-
     }
 
     public void Damage(int damagePoints)
     {
         hp -= damagePoints;
-        if (hp<=0)
+        if (hp<=0 && !WillNotDie)
         {
             OnDeath();
         }
