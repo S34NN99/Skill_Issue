@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public enum SkillType
+{
+    RootBullet,
+    RootSpike
+}
+
 public class Skill : MonoBehaviour
 {
     public Player player;
@@ -9,6 +16,7 @@ public class Skill : MonoBehaviour
     public float cooldownInSecs, attackRange, attackDuration, cooldownCache, durationCache;
     protected bool isOnCooldown = false, drainCooldown = false;
     public KeyCode castKey;
+    public SkillType type;
 
     private void Start()
     {
@@ -16,6 +24,10 @@ public class Skill : MonoBehaviour
 
     public virtual void OnSkillCast() 
     {
+        if (!player.unlockedSkills.Contains(type))
+        {
+            return;
+        }
         SetOnCooldown(true);
     }
 

@@ -123,7 +123,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4964972730526629372}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1579039479578134193}
+        m_TargetAssemblyTypeName: SkillTreeHandler, Assembly-CSharp
+        m_MethodName: ClickRootBullet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4964972730553513584
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4964972730553513585}
+  - component: {fileID: 1579039479578134193}
   m_Layer: 0
   m_Name: SkillTreeHandler
   m_TagString: Untagged
@@ -155,6 +168,30 @@ Transform:
   m_Father: {fileID: 4964972731340322295}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1579039479578134193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4964972730553513584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8139380de5cf284ba63d31602b3866a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  SP_Display: {fileID: 4964972731484365900}
+  skillCost:
+  - type: 0
+    cost: 1
+  - type: 1
+    cost: 1
+  skillButtons:
+  - type: 0
+    button: {fileID: 4964972730526629251}
+  - type: 1
+    button: {fileID: 4964972732318707202}
 --- !u!1 &4964972730566685147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,11 +1464,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4964972731641499935}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1579039479578134193}
+        m_TargetAssemblyTypeName: SkillTreeHandler, Assembly-CSharp
+        m_MethodName: ClickRootBurst
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4964972731723213317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,4 +2104,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4964972732318707203}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1579039479578134193}
+        m_TargetAssemblyTypeName: SkillTreeHandler, Assembly-CSharp
+        m_MethodName: ClickRootSpike
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

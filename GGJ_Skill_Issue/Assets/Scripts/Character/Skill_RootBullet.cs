@@ -12,7 +12,10 @@ public class Skill_RootBullet : Skill
         if (player.SpendMP(mpCost))
         {
             base.OnSkillCast();
-
+            if (!player.unlockedSkills.Contains(type))
+            {
+                return;
+            }
             oriPrefab = rangedAttack.projectilePrefab;
             rangedAttack.SetProjectilePrefab(bulletPrefab);
             rangedAttack.UseAttack();
