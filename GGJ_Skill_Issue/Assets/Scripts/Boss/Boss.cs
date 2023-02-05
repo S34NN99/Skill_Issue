@@ -8,12 +8,7 @@ public class Boss : Character, IEntity
     public GameObject curentEntity { get; set; }
 
     [SerializeField] private State StateToStart;
-
-    private void Awake()
-    {
-        HP = MaxHP;
-        Debug.Log(HP + " " + MaxHP + " " + gameObject.name);
-    }
+    public int damageToHit;
 
     private void Start()
     {

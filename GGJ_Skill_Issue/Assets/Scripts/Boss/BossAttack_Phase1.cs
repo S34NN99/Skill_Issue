@@ -64,7 +64,7 @@ public class BossAttack_Phase1 : Attack
 
     public override void UseAttack()
     {
-        if (currentWaitTime <= 0 && !isAttacking)
+        if (currentWaitTime <= 0 && !isAttacking && player)
         {
             isAttacking = true;
             isAttackDone = false;
@@ -103,6 +103,16 @@ public class BossAttack_Phase1 : Attack
         {
             currentWaitTime -= Time.deltaTime;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
     }
 
     private void FixedUpdate()

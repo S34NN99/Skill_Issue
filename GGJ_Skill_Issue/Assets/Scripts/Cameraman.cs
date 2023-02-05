@@ -11,7 +11,7 @@ public class Cameraman : MonoBehaviour
 
     private void Update()
     {
-        if (FollowPlayer)
+        if (FollowPlayer && player != null)
         {
             Camera.main.transform.position = player.transform.position + offset;
         }
