@@ -14,6 +14,8 @@ public class Character : Damageable
 
     private void Awake()
     {
+        HP = MaxHP;
+
         movementController = GetComponentInChildren<MovementController>();
 
         if (movementController)

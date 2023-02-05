@@ -53,7 +53,7 @@ public class BossAttack_Phase2 : Attack
 
     public override void UseAttack()
     {
-        if (currentWaitTime <= 0 && !isAttacking)
+        if (currentWaitTime <= 0 && !isAttacking && player)
         {
             isAttacking = true;
             isAttackDone = false;
