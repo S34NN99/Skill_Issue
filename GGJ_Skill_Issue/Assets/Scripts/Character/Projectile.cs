@@ -70,6 +70,8 @@ public class Projectile : MonoBehaviour
     public void CheckTagsAndDamage(string input)
     {
         hostile = CheckCollided()?.Find(x => x.CompareTag(input))?.gameObject.GetComponent<Damageable>();
+
+        Debug.Log("shjgsdjh");
         if (hostile == null)
         {
             return;

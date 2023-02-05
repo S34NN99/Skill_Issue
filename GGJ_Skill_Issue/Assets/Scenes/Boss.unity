@@ -274,6 +274,14 @@ PrefabInstance:
       propertyPath: mp
       value: 999
       objectReference: {fileID: 0}
+    - target: {fileID: 9055655137488615956, guid: 223ed0c81ddab6446a19595da57ed268, type: 3}
+      propertyPath: hostileTags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055655137488615956, guid: 223ed0c81ddab6446a19595da57ed268, type: 3}
+      propertyPath: hostileTags.Array.data[0]
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 223ed0c81ddab6446a19595da57ed268, type: 3}
 --- !u!1 &38358379
