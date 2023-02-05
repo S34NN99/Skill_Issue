@@ -10,10 +10,18 @@ public class SpawnBoss : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            boss.SetActive(true);
-            wall1.SetActive(true);
-
-            gameObject.SetActive(false);
+            StartCoroutine(WaitForBoss());
         }
+    }
+
+    IEnumerator WaitForBoss()
+    {
+        wall1.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+        boss.SetActive(true);
+        gameObject.SetActive(false);
+
+
     }
 }

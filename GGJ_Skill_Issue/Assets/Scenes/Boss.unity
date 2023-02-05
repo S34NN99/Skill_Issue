@@ -3600,7 +3600,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540083262}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 35.06263, y: -0.17689961, z: 1.1377982}
+  m_LocalPosition: {x: 37.95, y: -0.18, z: 1.1377982}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4216,7 +4216,7 @@ MonoBehaviour:
   baseAttackDamage: 0
   baseAttackRange: 0
   waitForNextAttack: 5
-  currentWaitTime: 0
+  currentWaitTime: 1
   attackPoint: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
@@ -4904,7 +4904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4190202378652912515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 88.87, y: 2.23, z: 0}
+  m_LocalPosition: {x: 84.53, y: 2.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
