@@ -21,7 +21,6 @@ public class Player : Character
         if(collision.gameObject.CompareTag("Boss"))
         {
             Boss boss = collision.gameObject.GetComponentInParent<Boss>();
-            Debug.Log(boss.damageToHit);
             Damage(boss.damageToHit);
         }
     }

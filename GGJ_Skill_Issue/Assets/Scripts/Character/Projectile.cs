@@ -72,6 +72,7 @@ public class Projectile : MonoBehaviour
     {
         if (selfCollider.OverlapCollider(new ContactFilter2D(), collided) > 0)
         {
+            Debug.Log(collided[0].gameObject.name);
             return collided;
         }
         return null;
@@ -81,7 +82,6 @@ public class Projectile : MonoBehaviour
     {
         hostile = CheckCollided()?.Find(x => x.CompareTag(input))?.gameObject.GetComponent<Damageable>();
 
-        Debug.Log("shjgsdjh");
         if (hostile == null)
         {
             return;

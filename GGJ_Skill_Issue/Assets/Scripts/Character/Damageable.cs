@@ -22,21 +22,10 @@ public class Damageable : MonoBehaviour
     [SerializeField] private bool willNotDie;
     public bool WillNotDie => willNotDie;
 
-    public bool Testing;
-
     private void Awake()
     {
         hp = MaxHP;
         Debug.Log(hp + " " + MaxHP + " " + gameObject.name);
-    }
-
-    private void Update()
-    {
-        if (Testing)
-        {
-            Damage(5);
-            Testing = false;
-        }
     }
 
     public void Damage(int damagePoints)
