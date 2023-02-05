@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Character
 {
     public int mp, sp;
-
+    public List<SkillType> unlockedSkills;
     public bool SpendMP(int cost)
     {
         if (cost > mp)

@@ -131,7 +131,10 @@ public class Skill_RootSpike : Skill
         if (player.SpendMP(mpCost))
         {
             base.OnSkillCast();
-
+            if (!player.unlockedSkills.Contains(type))
+            {
+                return;
+            }
             durationCache = attackDuration;
 
             instanced_SpikeHead = Instantiate(spikePrefab_head, attackPoint);

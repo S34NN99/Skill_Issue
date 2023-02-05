@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3557961187334284807}
   - component: {fileID: 4762062633284658581}
-  - component: {fileID: 3860553604576585319}
+  - component: {fileID: 1553187958053326474}
+  - component: {fileID: 7986783516541839454}
+  - component: {fileID: 4883136395924978440}
   m_Layer: 0
   m_Name: SP
   m_TagString: Untagged
@@ -26,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8817483130240464892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.596681, y: 0.3680997, z: -0.0386358}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -85,7 +87,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3860553604576585319
+--- !u!114 &1553187958053326474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817483130240464892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca973fc495c85c489958143ccb37c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  count: 1
+--- !u!95 &7986783516541839454
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -95,7 +111,7 @@ Animator:
   m_GameObject: {fileID: 8817483130240464892}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: efcaaff524cc74648b0b94d01afbb2ef, type: 2}
+  m_Controller: {fileID: 9100000, guid: 54d54f15115ac404e8bb1d90b4c17c5b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -105,3 +121,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!70 &4883136395924978440
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817483130240464892}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.96, y: 1.44}
+  m_Direction: 0
