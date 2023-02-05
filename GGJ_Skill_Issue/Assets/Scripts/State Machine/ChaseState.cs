@@ -16,7 +16,6 @@ public class ChaseState : State
         ConditionDict.Add(s, false);
         conditions.AddCondition(s, () =>
         {
-            Debug.Log("Testing");
             //ConditionDict[s] = true;
         });
     }
