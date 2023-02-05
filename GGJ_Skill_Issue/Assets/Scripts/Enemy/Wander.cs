@@ -28,8 +28,6 @@ public class Wander : MonoBehaviour
         if (currentWaitTime <= 0)
         {
             parent.transform.Translate(TargetPos * Time.deltaTime);
-            Debug.Log(currentWaitTime + " above 0");
-            Debug.Log(TargetPos);
 
             moveTime -= Time.deltaTime;
             if(moveTime <= 0)
@@ -40,7 +38,6 @@ public class Wander : MonoBehaviour
         else if (currentWaitTime > 0)
         {
             currentWaitTime -= Time.deltaTime;
-            Debug.Log(currentWaitTime + " is below 0");
             if (currentWaitTime <= 0)
             {
                 TargetPos = new Vector2(Random.Range(-2,2), 0);

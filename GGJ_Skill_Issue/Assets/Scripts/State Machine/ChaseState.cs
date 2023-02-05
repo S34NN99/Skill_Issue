@@ -8,8 +8,10 @@ public class ChaseState : State
     public State StateToChangeTo;
 
     private Dictionary<string, bool> ConditionDict = new Dictionary<string, bool>();
-    private GameObject parent;
-    private GameObject player;
+    public GameObject parent;
+    public GameObject player;
+    [Range(0, 10)]
+    public int speed;
 
     private void PutInConditions(string s)
     {
@@ -30,7 +32,8 @@ public class ChaseState : State
 
     public override void RunCurrentState(IEntity entity)
     {
-        OnUpdateActions?.Invoke();
+        OnUpdateActions?.Invoke(); 
+        MoveTowards();
         foreach (var s in ConditionDict.Keys.ToList())
         {
             UnityEvent thisEvent;
@@ -57,6 +60,7 @@ public class ChaseState : State
 
     void MoveTowards()
     {
-        //parent.transform = Vector2.MoveTowards()
+        var step = speed * Time.deltaTime;
+        parent.transform.position = Vector2.MoveTowards(parent.transform.position, player.transform.position, step);
     }
 }

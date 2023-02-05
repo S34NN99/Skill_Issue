@@ -9,6 +9,7 @@ public class Boss : Character, IEntity
 
     [SerializeField] private State StateToStart;
     public int damageToHit;
+    public GameObject endScene;
 
     private void Start()
     {
@@ -17,11 +18,15 @@ public class Boss : Character, IEntity
         SM.owner = this;
 
         SM.SetState(StateToStart);
+        DeathEvents += () => endScene.SetActive(true);
+        DeathEvents += () => Time.timeScale = 0;
     }
 
     private void Update()
     {
         SM.UpdateStates();
     }
+
+
 
 }

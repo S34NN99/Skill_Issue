@@ -47,17 +47,6 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(collision.gameObject.name + "Target hit");
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(collision.gameObject.name + "Target hit");
-    }
-
-
     public void SetDirection(Vector3 inNormalisedDirection)
     {
         normalisedDirection = inNormalisedDirection;
